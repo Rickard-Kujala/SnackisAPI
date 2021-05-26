@@ -24,7 +24,7 @@ namespace SnackisAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return new JsonResult(_postDAL.GetCollectionFromDB());
+            return new JsonResult(_postDAL.GetAllPosts());
         }
 
         // GET api/<SnackisController>/5
@@ -40,13 +40,8 @@ namespace SnackisAPI.Controllers
         {
             if (ModelState.IsValid)
             {
-                _postDAL.CreatePostToDB(model);
+                _postDAL.CreatePost(model);
             }
-            //Employee emp = new Employee();
-            //protected async Task CreateEmployee()
-            //{
-            //    await Http.SendJsonAsync(HttpMethod.Post, "/api/Employee/Create", emp);
-            //}
         }
 
         // PUT api/<SnackisController>/5

@@ -36,7 +36,7 @@ namespace SnackisAPI.Dal
 
             return client;
         }
-        public IEnumerable<Models.Post> GetCollectionFromDB()
+        public IEnumerable<Models.Post> GetAllPosts()
         {
             var client = GetClient("CosmosMongoSnackis");
             var database = client.GetDatabase(_configuration["CosmosMongoSnackis:DbName"]);
@@ -44,12 +44,14 @@ namespace SnackisAPI.Dal
 
             return collection.Find(new BsonDocument()).ToList();
         }
-        public async Task CreatePostToDB(Post model)
+        public async Task CreatePost(Post model)
         {
-            var client = GetClient("MongoDBSettings");
-            var database = client.GetDatabase(_configuration["MongoDBSettings:DbName"]);
-            var postCollection = database.GetCollection<Post>(_configuration["MongoDBSettings:CollectionName"]);
+            var client = GetClient("CosmosMongoSnackis");
+            var database = client.GetDatabase(_configuration["CosmosMongoSnackis:DbName"]);
+            var postCollection = database.GetCollection<Post>(_configuration["CosmosMongoSnackis:CollectionName"]);
             postCollection.Find(new BsonDocument());
+
+            //var postCollection = GetCollectionFromDB();
 
             var post = new Post
             {
@@ -59,11 +61,33 @@ namespace SnackisAPI.Dal
                 Title=model.Title,
                 Text=model.Text,
                 DateTime=DateTime.Now,
-                AbuseReport=model.AbuseReport,
+                AbuseReport=false,
                 PostParent=model.PostParent
             };
             
             await postCollection.InsertOneAsync(post);
+        }
+        public async Task DeletePostToDB(string id)
+        {
+            var client = GetClient("CosmosMongoSnackis");
+            var database = client.GetDatabase(_configuration["CosmosMongoSnackis:DbName"]);
+            var postCollection = database.GetCollection<Post>(_configuration["CosmosMongoSnackis:CollectionName"]);
+            postCollection.Find(new BsonDocument());
+
+            var filter = Builders<Post>.Filter.Eq(x=>x.Id.ToString(), id);
+
+            await postCollection.DeleteOneAsync(filter);
+        }
+        public IEnumerable<string> GetAllcetegories()
+        {
+            var client = GetClient("CosmosMongoSnackis");
+            var database = client.GetDatabase(_configuration["CosmosMongoSnackis:DbName"]);
+            var collection = database.GetCollection<Models.Post>(_configuration["CosmosMongoSnackis:CollectionName"]);
+
+            //var results = collection.Find(FilterDefinition<Post>.Empty).ToList().Select(c=>c.Category);
+            return collection.Find(FilterDefinition<Post>.Empty).ToList().Select(c => c.Category);
+
+            //return collection.Find(new BsonDocument()).ToList();
         }
     }
 }

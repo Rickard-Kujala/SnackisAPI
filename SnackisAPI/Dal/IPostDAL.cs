@@ -5,7 +5,8 @@ namespace SnackisAPI.Dal
 {
     public interface IPostDAL
     {
-        IEnumerable<Models.Post> GetCollectionFromDB();
-        Task CreatePostToDB(Models.Post model);
+        IEnumerable<Models.Post> GetAllPosts();
+        Task CreatePost(Models.Post model);
+        public IEnumerable<string> GetAllcetegories();
     }
 }

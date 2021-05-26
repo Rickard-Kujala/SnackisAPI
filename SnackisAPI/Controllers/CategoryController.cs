@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SnackisAPI.Dal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,17 @@ namespace SnackisAPI.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
+        private readonly IPostDAL _postDAL;
+
+        public CategoryController(IPostDAL postDAL)
+        {
+            _postDAL = postDAL;
+        }
         // GET: api/<ValuesController>
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _postDAL.GetAllcetegories();
         }
 
         // GET api/<ValuesController>/5
