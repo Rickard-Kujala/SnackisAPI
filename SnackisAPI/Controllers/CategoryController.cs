@@ -23,7 +23,7 @@ namespace SnackisAPI.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return _postDAL.GetAllcetegories();
+            return _postDAL.GetAllcetegories().Distinct();
         }
 
         // GET api/<ValuesController>/5
