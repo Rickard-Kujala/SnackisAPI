@@ -9,6 +9,7 @@ namespace SnackisAPI.Models
     {
         public Guid Id { get; set; }
         public string UserId { get; set; }
+        public string Nickname { get; set; }
         public string Category { get; set; }
         public string Title { get; set; }
         public string Text { get; set; }

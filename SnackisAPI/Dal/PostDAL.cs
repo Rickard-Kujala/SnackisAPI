@@ -62,7 +62,9 @@ namespace SnackisAPI.Dal
                 Text=model.Text,
                 DateTime=DateTime.Now,
                 AbuseReport=false,
-                PostParent=model.PostParent
+                PostParent=model.PostParent,
+                Nickname=model.Nickname
+                
             };
             
             await postCollection.InsertOneAsync(post);
