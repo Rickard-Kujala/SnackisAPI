@@ -24,7 +24,7 @@ namespace SnackisAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return new JsonResult(_postDAL.GetAllPosts());
+            return new JsonResult(_postDAL.GetAllPosts().ToList());
         }
 
         // GET api/<SnackisController>/5
