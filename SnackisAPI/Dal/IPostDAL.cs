@@ -8,6 +8,6 @@ namespace SnackisAPI.Dal
         IEnumerable<Models.Post> GetAllPosts();
         Task CreatePost(Models.Post model);
         public IEnumerable<string> GetAllcetegories();
-        Task DeleteCategoryToDB(string name)
+        Task DeleteCategoryToDB(string name);
     }
 }

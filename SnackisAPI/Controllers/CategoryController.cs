@@ -48,9 +48,9 @@ namespace SnackisAPI.Controllers
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
-        public void Delete(string name)
+        public void Delete(string id)
         {
-            _postDAL.DeleteCategoryToDB(name);
+            _postDAL.DeleteCategoryToDB(id);
         }
     }
 }
