@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SnackisAPI.Dal;
+using SnackisAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace SnackisAPI.Controllers
         }
         // GET: api/<ValuesController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Post> Get()
         {
             return _postDAL.GetAllcetegories().Distinct();
         }
@@ -48,7 +49,7 @@ namespace SnackisAPI.Controllers
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
-        public void Delete(string id)
+        public void Delete(Guid id)
         {
             _postDAL.DeleteCategoryToDB(id);
         }

@@ -80,27 +80,30 @@ namespace SnackisAPI.Dal
 
             await postCollection.DeleteOneAsync(filter);
         }
-        public IEnumerable<string> GetAllcetegories()
+        public IEnumerable<Post> GetAllcetegories()
         {
             var client = GetClient("CosmosMongoSnackis");
             var database = client.GetDatabase(_configuration["CosmosMongoSnackis:DbName"]);
             var collection = database.GetCollection<Models.Post>(_configuration["CosmosMongoSnackis:CollectionName"]);
 
             //var results = collection.Find(FilterDefinition<Post>.Empty).ToList().Select(c=>c.Category);
-            return collection.Find(FilterDefinition<Post>.Empty).ToList().Select(c => c.Category);
+            //return collection.Find(FilterDefinition<Post>.Empty).ToList().Select(c => c.Category);
+            var filter = Builders<Post>.Filter.Empty;
+
+            return collection.Find(FilterDefinition<Post>.Empty).ToList();
 
             //return collection.Find(new BsonDocument()).ToList();
         }
-        public async Task DeleteCategoryToDB(string name)
+        public async Task DeleteCategoryToDB(Guid id)
         {
             var client = GetClient("CosmosMongoSnackis");
             var database = client.GetDatabase(_configuration["CosmosMongoSnackis:DbName"]);
             var postCollection = database.GetCollection<Post>(_configuration["CosmosMongoSnackis:CollectionName"]);
             postCollection.Find(new BsonDocument());
+            
+            var filter = Builders<Post>.Filter.Eq(x => x.Id, id);
 
-            var filter = Builders<Post>.Filter.Eq(x => x.Category, name);
-
-            await postCollection.DeleteOneAsync(filter);
+            var variabel=await postCollection./*DeleteOneAsync(filter);*/DeleteManyAsync(filter);
         }
     }
 }

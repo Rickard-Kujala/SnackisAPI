@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using SnackisAPI.Models;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SnackisAPI.Dal
@@ -7,7 +9,7 @@ namespace SnackisAPI.Dal
     {
         IEnumerable<Models.Post> GetAllPosts();
         Task CreatePost(Models.Post model);
-        public IEnumerable<string> GetAllcetegories();
-        Task DeleteCategoryToDB(string name);
+        public IEnumerable<Post> GetAllcetegories();
+        Task DeleteCategoryToDB(Guid id);
     }
 }
