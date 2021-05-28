@@ -91,5 +91,16 @@ namespace SnackisAPI.Dal
 
             //return collection.Find(new BsonDocument()).ToList();
         }
+        public async Task DeleteCategoryToDB(string name)
+        {
+            var client = GetClient("CosmosMongoSnackis");
+            var database = client.GetDatabase(_configuration["CosmosMongoSnackis:DbName"]);
+            var postCollection = database.GetCollection<Post>(_configuration["CosmosMongoSnackis:CollectionName"]);
+            postCollection.Find(new BsonDocument());
+
+            var filter = Builders<Post>.Filter.Eq(x => x.Category, name);
+
+            await postCollection.DeleteOneAsync(filter);
+        }
     }
 }
