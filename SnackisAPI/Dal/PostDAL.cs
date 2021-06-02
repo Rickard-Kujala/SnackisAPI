@@ -112,8 +112,19 @@ namespace SnackisAPI.Dal
             postCollection.Find(new BsonDocument());
 
             var filter = Builders<Post>.Filter.Eq(x => x.Id, id);
-
-            await postCollection.ReplaceOneAsync(filter, updatedPost);
+            var update = Builders<Post>.Update
+                .Set(p => p.AbuseReport, updatedPost.AbuseReport)
+                .Set(p => p.Category, updatedPost.Category)
+                .Set(p => p.DateTime, updatedPost.DateTime)
+                .Set(p => p.DisLikes, updatedPost.DisLikes)
+                .Set(p => p.Likes, updatedPost.Likes)
+                .Set(p => p.Nickname, updatedPost.Nickname)
+                .Set(p => p.PostParent, updatedPost.PostParent)
+                .Set(p => p.Replyes, updatedPost.Replyes)
+                .Set(p => p.Text, updatedPost.Text)
+                .Set(p => p.Threads, updatedPost.Threads)
+                .Set(p => p.Title, updatedPost.Title);
+            await postCollection.UpdateOneAsync(filter, update);
         }
         public Post GetPostById(Guid id)
         {
