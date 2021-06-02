@@ -29,9 +29,9 @@ namespace SnackisAPI.Controllers
 
         // GET api/<SnackisController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Post Get(Guid id)
         {
-            return "value";
+            return _postDAL.GetPostById(id);
         }
 
         // POST api/<SnackisController>

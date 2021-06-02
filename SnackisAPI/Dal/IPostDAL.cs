@@ -12,5 +12,6 @@ namespace SnackisAPI.Dal
         public IEnumerable<Post> GetAllcetegories();
         Task DeleteCategoryToDB(Guid id);
         Task UpdatePost(Guid id, Post updatedPost);
+        Post GetPostById(Guid id);
     }
 }
