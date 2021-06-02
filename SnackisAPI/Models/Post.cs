@@ -15,7 +15,11 @@ namespace SnackisAPI.Models
         public string Text { get; set; }
         public DateTime DateTime { get; set; }
         public bool AbuseReport { get; set; }
-        public string PostParent { get; set; }//post id från den post man svarar på
+        public string PostParent { get; set; }
+        public int Likes { get; set; }
+        public int DisLikes { get; set; }
+        public int Replyes { get; set; }
+        public int Threads { get; set; }
     }
     
     

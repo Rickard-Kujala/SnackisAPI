@@ -63,7 +63,11 @@ namespace SnackisAPI.Dal
                 DateTime=DateTime.Now,
                 AbuseReport=false,
                 PostParent=model.PostParent,
-                Nickname=model.Nickname
+                Nickname=model.Nickname,
+                Likes=model.Likes,
+                DisLikes=model.DisLikes,
+                Replyes=model.Replyes,
+                Threads=model.Threads
                 
             };
             
