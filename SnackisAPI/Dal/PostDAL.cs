@@ -113,6 +113,7 @@ namespace SnackisAPI.Dal
 
             var filter = Builders<Post>.Filter.Eq(x => x.Id, id);
             var update = Builders<Post>.Update
+                .Set(p => p.Id, updatedPost.Id)
                 .Set(p => p.AbuseReport, updatedPost.AbuseReport)
                 .Set(p => p.Category, updatedPost.Category)
                 .Set(p => p.DateTime, updatedPost.DateTime)
