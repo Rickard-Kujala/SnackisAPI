@@ -88,9 +88,9 @@ namespace SnackisAPI.Dal
 
             //var results = collection.Find(FilterDefinition<Post>.Empty).ToList().Select(c=>c.Category);
             //return collection.Find(FilterDefinition<Post>.Empty).ToList().Select(c => c.Category);
-            var filter = Builders<Post>.Filter.Empty;
 
             return collection.Find(FilterDefinition<Post>.Empty).ToList();
+
 
             //return collection.Find(new BsonDocument()).ToList();
         }
@@ -104,6 +104,17 @@ namespace SnackisAPI.Dal
             var filter = Builders<Post>.Filter.Eq(x => x.Id, id);
 
             var variabel=await postCollection./*DeleteOneAsync(filter);*/DeleteManyAsync(filter);
+        }
+        public async Task UpdatePost(Guid id, Post updatedPost)
+        {
+            var client = GetClient("CosmosMongoSnackis");
+            var database = client.GetDatabase(_configuration["CosmosMongoSnackis:DbName"]);
+            var postCollection = database.GetCollection<Post>(_configuration["CosmosMongoSnackis:CollectionName"]);
+            postCollection.Find(new BsonDocument());
+
+            var filter = Builders<Post>.Filter.Eq(x => x.Id, id);
+
+            await postCollection.ReplaceOneAsync(filter, updatedPost);
         }
     }
 }

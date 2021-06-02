@@ -46,9 +46,9 @@ namespace SnackisAPI.Controllers
 
         // PUT api/<SnackisController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(Guid id, [FromBody] Post updatedPost)
         {
-
+            _postDAL.UpdatePost(id, updatedPost);
         }
 
         // DELETE api/<SnackisController>/5

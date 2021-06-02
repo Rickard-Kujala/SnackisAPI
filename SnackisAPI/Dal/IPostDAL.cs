@@ -11,5 +11,6 @@ namespace SnackisAPI.Dal
         Task CreatePost(Models.Post model);
         public IEnumerable<Post> GetAllcetegories();
         Task DeleteCategoryToDB(Guid id);
+        Task UpdatePost(Guid id, Post updatedPost);
     }
 }
