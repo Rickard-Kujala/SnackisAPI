@@ -67,7 +67,8 @@ namespace SnackisAPI.Dal
                 Likes=model.Likes,
                 DisLikes=model.DisLikes,
                 Replyes=model.Replyes,
-                Threads=model.Threads
+                Threads=model.Threads,
+                ImageURL=model.ImageURL
                 
             };
             
@@ -124,7 +125,9 @@ namespace SnackisAPI.Dal
                 .Set(p => p.Replyes, updatedPost.Replyes)
                 .Set(p => p.Text, updatedPost.Text)
                 .Set(p => p.Threads, updatedPost.Threads)
-                .Set(p => p.Title, updatedPost.Title);
+                .Set(p => p.Title, updatedPost.Title)
+                .Set(p => p.ImageURL , updatedPost.ImageURL );
+
             await postCollection.UpdateOneAsync(filter, update);
         }
         public Post GetPostById(Guid id)
