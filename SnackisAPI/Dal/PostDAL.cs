@@ -65,10 +65,7 @@ namespace SnackisAPI.Dal
                 PostParent=model.PostParent,
                 Nickname=model.Nickname,
                 Likes=model.Likes,
-                DisLikes=model.DisLikes,
-                Replyes=model.Replyes,
-                Threads=model.Threads,
-                ImageURL=model.ImageURL
+                DisLikes=model.DisLikes
                 
             };
             
@@ -122,11 +119,8 @@ namespace SnackisAPI.Dal
                 .Set(p => p.Likes, updatedPost.Likes)
                 .Set(p => p.Nickname, updatedPost.Nickname)
                 .Set(p => p.PostParent, updatedPost.PostParent)
-                .Set(p => p.Replyes, updatedPost.Replyes)
                 .Set(p => p.Text, updatedPost.Text)
-                .Set(p => p.Threads, updatedPost.Threads)
-                .Set(p => p.Title, updatedPost.Title)
-                .Set(p => p.ImageURL , updatedPost.ImageURL );
+                .Set(p => p.Title, updatedPost.Title);
 
             await postCollection.UpdateOneAsync(filter, update);
         }
