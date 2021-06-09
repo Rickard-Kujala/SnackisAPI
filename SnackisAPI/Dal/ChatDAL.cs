@@ -27,7 +27,7 @@ namespace SnackisAPI.Dal
 
             return collection.Find(new BsonDocument()).ToList();
         }
-        public async Task<> CreateChat(Chat model)
+        public async Task CreateChat(Chat model)
         {
             var client =_dAL.GetClient("CosmosMongoChat");
             var database = client.GetDatabase(_configuration["CosmosMongoChat:DbName"]);
