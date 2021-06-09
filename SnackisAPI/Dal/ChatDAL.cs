@@ -11,10 +11,10 @@ namespace SnackisAPI.Dal
 {
     public class ChatDAL : IChatDAL
     {
-        private readonly DAL _dAL;
+        private readonly IDAL _dAL;
         private readonly IConfiguration _configuration;
 
-        public ChatDAL(DAL dAL, IConfiguration configuration)
+        public ChatDAL(IDAL dAL, IConfiguration configuration)
         {
             _dAL = dAL;
             _configuration = configuration;
@@ -22,7 +22,7 @@ namespace SnackisAPI.Dal
         public IEnumerable<Models.Post> GetAllChats()
         {
             var client = _dAL.GetClient("CosmosMongoChat");
-            var database = client.GetDatabase(_configuration["CosmosMongoSnackis:DbName"]);
+            var database = client.GetDatabase(_configuration["CosmosMongoChat:DbName"]);
             var collection = database.GetCollection<Models.Post>(_configuration["CosmosMongoChat:CollectionName"]);
 
             return collection.Find(new BsonDocument()).ToList();
