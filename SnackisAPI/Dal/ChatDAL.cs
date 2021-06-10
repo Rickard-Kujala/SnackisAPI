@@ -19,11 +19,11 @@ namespace SnackisAPI.Dal
             _dAL = dAL;
             _configuration = configuration;
         }
-        public IEnumerable<Models.Post> GetAllChats()
+        public IEnumerable<Models.Chat> GetAllChats()
         {
             var client = _dAL.GetClient("CosmosMongoChat");
             var database = client.GetDatabase(_configuration["CosmosMongoChat:DbName"]);
-            var collection = database.GetCollection<Models.Post>(_configuration["CosmosMongoChat:CollectionName"]);
+            var collection = database.GetCollection<Models.Chat>(_configuration["CosmosMongoChat:CollectionName"]);
 
             return collection.Find(new BsonDocument()).ToList();
         }
@@ -40,6 +40,7 @@ namespace SnackisAPI.Dal
                 ReceiverId=model.ReceiverId,
                 SenderId=model.SenderId,
                 Date=DateTime.Now,
+                Text=model.Text,
                 GroupMembers=model.GroupMembers,
                 GroupAdminId=model.GroupAdminId
                

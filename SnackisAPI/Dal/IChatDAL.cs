@@ -6,7 +6,7 @@ namespace SnackisAPI.Dal
 {
     public interface IChatDAL
     {
-        IEnumerable<Post> GetAllChats();
+        IEnumerable<Chat> GetAllChats();
         Task CreateChat(Chat model);
     }
 }
