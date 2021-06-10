@@ -51,7 +51,6 @@ namespace SnackisAPI.Dal
             var postCollection = database.GetCollection<Post>(_configuration["CosmosMongoSnackis:CollectionName"]);
             postCollection.Find(new BsonDocument());
 
-            //var postCollection = GetCollectionFromDB();
 
             var post = new Post
             {
@@ -65,7 +64,8 @@ namespace SnackisAPI.Dal
                 PostParent=model.PostParent,
                 Nickname=model.Nickname,
                 Likes=model.Likes,
-                DisLikes=model.DisLikes
+                DisLikes=model.DisLikes,
+                Heading=model.Heading
                 
             };
             

@@ -18,6 +18,8 @@ namespace SnackisAPI.Models
         public string PostParent { get; set; }
         public int Likes { get; set; }
         public int DisLikes { get; set; }
+        public string Heading { get; set; }
+
 
     }
 
