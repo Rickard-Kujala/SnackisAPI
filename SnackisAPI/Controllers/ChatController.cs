@@ -53,8 +53,9 @@ namespace SnackisAPI.Controllers
 
         // DELETE api/<ChatController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task Delete(Guid id)
         {
+           await _dAL.DeletechatById(id);
         }
     }
 }

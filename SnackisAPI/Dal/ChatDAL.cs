@@ -21,17 +21,17 @@ namespace SnackisAPI.Dal
         }
         public IEnumerable<Models.Chat> GetAllChats()
         {
-            var client = _dAL.GetClient("CosmosMongoChat");
-            var database = client.GetDatabase(_configuration["CosmosMongoChat:DbName"]);
-            var collection = database.GetCollection<Models.Chat>(_configuration["CosmosMongoChat:CollectionName"]);
+            var client = _dAL.GetClient("CosmosMongoSnackisChat");
+            var database = client.GetDatabase(_configuration["CosmosMongoSnackisChat:DbName"]);
+            var collection = database.GetCollection<Models.Chat>(_configuration["CosmosMongoSnackisChat:CollectionName"]);
 
             return collection.Find(new BsonDocument()).ToList();
         }
         public async Task CreateChat(Chat model)
         {
-            var client =_dAL.GetClient("CosmosMongoChat");
-            var database = client.GetDatabase(_configuration["CosmosMongoChat:DbName"]);
-            var postCollection = database.GetCollection<Chat>(_configuration["CosmosMongoChat:CollectionName"]);
+            var client =_dAL.GetClient("CosmosMongoSnackisChat");
+            var database = client.GetDatabase(_configuration["CosmosMongoSnackisChat:DbName"]);
+            var postCollection = database.GetCollection<Chat>(_configuration["CosmosMongoSnackisChat:CollectionName"]);
             postCollection.Find(new BsonDocument());
 
             var chat = new Chat
@@ -48,6 +48,17 @@ namespace SnackisAPI.Dal
             };
 
             await postCollection.InsertOneAsync(chat);
+        }
+        public async Task DeletechatById(Guid id)
+        {
+            var client = _dAL.GetClient("CosmosMongoSnackisChat");
+            var database = client.GetDatabase(_configuration["CosmosMongoSnackisChat:DbName"]);
+            var postCollection = database.GetCollection<Post>(_configuration["CosmosMongoSnackisChat:CollectionName"]);
+            postCollection.Find(new BsonDocument());
+
+            var filter = Builders<Post>.Filter.Eq(x => x.Id, id);
+
+            await postCollection.DeleteOneAsync(filter);
         }
     }
 }
