@@ -60,5 +60,24 @@ namespace SnackisAPI.Dal
 
             await postCollection.DeleteOneAsync(filter);
         }
+        public async Task UpdateChat(Guid id, Chat updatedChat)
+        {
+            var client = _dAL.GetClient("CosmosMongoSnackisChat");
+            var database = client.GetDatabase(_configuration["CosmosMongoSnackisChat:DbName"]);
+            var ChatCollection = database.GetCollection<Chat>(_configuration["CosmosMongoSnackisChat:CollectionName"]);
+            ChatCollection.Find(new BsonDocument());
+
+            var filter = Builders<Chat>.Filter.Eq(x => x.Id, id);
+            var update = Builders<Chat>.Update
+                .Set(c => c.Id, updatedChat.Id)
+                .Set(c => c.ReceiverId, updatedChat.ReceiverId)
+                .Set(c => c.SenderId, updatedChat.SenderId)
+                .Set(c => c.Text, updatedChat.Text)
+                .Set(c => c.IsRead, updatedChat.IsRead)
+                .Set(c => c.GroupMembers, updatedChat.GroupMembers)
+                .Set(c => c.GroupAdminId, updatedChat.GroupAdminId);
+
+            await ChatCollection.UpdateOneAsync(filter, update);
+        }
     }
 }

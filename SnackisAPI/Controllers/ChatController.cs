@@ -47,8 +47,9 @@ namespace SnackisAPI.Controllers
 
         // PUT api/<ChatController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(Guid id, [FromBody] Chat updatedPost)
         {
+            _dAL.UpdateChat(id, updatedPost);
         }
 
         // DELETE api/<ChatController>/5

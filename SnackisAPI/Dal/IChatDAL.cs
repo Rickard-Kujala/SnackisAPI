@@ -10,5 +10,6 @@ namespace SnackisAPI.Dal
         IEnumerable<Chat> GetAllChats();
         Task CreateChat(Chat model);
         Task DeletechatById(Guid id);
+        Task UpdateChat(Guid id, Chat updatedChat);
     }
 }
