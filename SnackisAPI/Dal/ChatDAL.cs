@@ -39,6 +39,7 @@ namespace SnackisAPI.Dal
                 Id = Guid.NewGuid(),
                 ReceiverId=model.ReceiverId,
                 SenderId=model.SenderId,
+                IsRead=model.IsRead,
                 Date=DateTime.Now,
                 Text=model.Text,
                 GroupMembers=model.GroupMembers,
