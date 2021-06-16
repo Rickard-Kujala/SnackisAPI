@@ -44,7 +44,8 @@ namespace SnackisAPI.Dal
                 Text=model.Text,
                 GroupMembers=model.GroupMembers,
                 GroupAdminId=model.GroupAdminId,
-                GroupChatTitle=model.GroupChatTitle
+                GroupChatTitle=model.GroupChatTitle,
+                ParentPost=model.ParentPost
                 
                
 
@@ -79,7 +80,9 @@ namespace SnackisAPI.Dal
                 .Set(c => c.IsRead, updatedChat.IsRead)
                 .Set(c => c.GroupMembers, updatedChat.GroupMembers)
                 .Set(c => c.GroupAdminId, updatedChat.GroupAdminId)
-                .Set(c => c.GroupChatTitle, updatedChat.GroupChatTitle);
+                .Set(c => c.GroupChatTitle, updatedChat.GroupChatTitle)
+                .Set(c => c.ParentPost, updatedChat.ParentPost);
+
 
             await ChatCollection.UpdateOneAsync(filter, update);
         }
