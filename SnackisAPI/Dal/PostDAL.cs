@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Authentication;
 using System.Threading.Tasks;
+using SnackisAPI.BadWords;
 
 namespace SnackisAPI.Dal
 {
@@ -68,7 +69,7 @@ namespace SnackisAPI.Dal
                 Heading=model.Heading
                 
             };
-            
+            post=BadWordsFilter.FilterPosts(post);
             await postCollection.InsertOneAsync(post);
         }
         public async Task DeletePostToDB(string id)
