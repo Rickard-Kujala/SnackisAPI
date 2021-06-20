@@ -66,7 +66,8 @@ namespace SnackisAPI.Dal
                 Nickname=model.Nickname,
                 Likes=model.Likes,
                 DisLikes=model.DisLikes,
-                Heading=model.Heading
+                Heading=model.Heading,
+                Image=model.Image
                 
             };
             post=BadWordsFilter.FilterPosts(post);
@@ -121,7 +122,8 @@ namespace SnackisAPI.Dal
                 .Set(p => p.Nickname, updatedPost.Nickname)
                 .Set(p => p.PostParent, updatedPost.PostParent)
                 .Set(p => p.Text, updatedPost.Text)
-                .Set(p => p.Title, updatedPost.Title);
+                .Set(p => p.Title, updatedPost.Title)
+                .Set(p => p.Image, updatedPost.Image);
 
             await postCollection.UpdateOneAsync(filter, update);
         }
