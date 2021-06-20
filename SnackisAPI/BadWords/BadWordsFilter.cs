@@ -10,7 +10,6 @@ namespace SnackisAPI.BadWords
     {
         public static Post FilterPosts(Post unFiltered)
         {
-            var text = unFiltered.Text;
             string[] unAllowedWords = {
                 "jävla",
                 "helvete",
@@ -27,7 +26,7 @@ namespace SnackisAPI.BadWords
             };
             foreach (var item in unAllowedWords)
             {
-                if (unFiltered.Text.Contains(item))
+                if (unFiltered.Text!= null  && unFiltered.Text.Contains(item))
                 {
                     unFiltered.Text = unFiltered.Text.Replace(item, "***olämpligt innehåll***");
                 }
