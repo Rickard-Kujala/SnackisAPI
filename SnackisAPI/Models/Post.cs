@@ -20,6 +20,8 @@ namespace SnackisAPI.Models
         public int DisLikes { get; set; }
         public string Heading { get; set; }
         public string Image { get; set; }
+        public List<string[]> UserReactions { get; set; } = new();
+
 
 
     }
